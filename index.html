@@ -272,6 +272,91 @@ button.ac{cursor:pointer}
 .confetti i{position:absolute;top:-12px;width:10px;height:14px;border-radius:3px;animation:fall 1.6s ease-in forwards}
 @keyframes fall{to{transform:translateY(105vh) rotate(540deg);opacity:.8}}
 footer{padding-block:22px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+
+/* ===== Mobile (≤760px) : le bureau reste inchangé ===== */
+.tab svg,.m-tip,.dock,.view-ctrl,.m-flex,.sheet-head,.sheet-backdrop{display:none}
+@media (max-width:760px){
+  body{padding-bottom:calc(74px + env(safe-area-inset-bottom,0px))}
+  .top{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg)}
+  .top .wrap{flex-wrap:nowrap;padding-block:8px}
+  .brand{font-size:1.25rem} .brand svg{width:30px;height:30px}
+  .stats{gap:5px} .chip{padding:5px 9px;font-size:.82rem} .chip.xp{display:none}
+  .tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;margin:0;width:auto;max-width:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;
+    padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));
+    border-radius:22px 22px 0 0;border:1px solid var(--line);border-bottom:0;background:color-mix(in srgb,var(--surface) 94%,transparent);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 -12px 30px -20px rgba(90,61,216,.45);overflow:visible}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 2px 6px;border-radius:14px;font-size:.76rem;min-height:54px;justify-content:center}
+  .tab svg{display:block;width:24px;height:24px}
+  .tab[aria-current="page"]{background:var(--accent-soft);color:var(--accent)}
+  .hub{padding-block:16px 28px}
+  .hero{gap:12px;margin-bottom:18px}
+  .hero-art{width:150px}
+  .hero h1{font-size:2rem;margin:.2em 0 .3em}
+  .hero p.lead{font-size:1rem}
+  .hero .cta .btn{flex:1 1 100%}
+  .m-tip{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px 12px;align-items:start;padding:14px 16px;margin-bottom:18px;font-size:.92rem;background:var(--accent-soft);border-color:transparent;box-shadow:none}
+  .m-tip[hidden]{display:none}
+  .m-tip svg{width:28px;height:28px;color:var(--accent)}
+  .m-tip .btn{grid-column:2;justify-self:start}
+  .section-head h2,#t-defi,#t-leg{font-size:1.6rem!important}
+  footer{padding-bottom:20px}
+  #toast{top:calc(64px + env(safe-area-inset-top,0px));bottom:auto}
+
+  /* écran de jeu plein écran */
+  html.in-stage,html.in-stage body{overflow:hidden;height:100%;overscroll-behavior:none}
+  html.in-stage body{padding-bottom:0}
+  html.in-stage footer,html.in-stage .top{display:none}
+  .stage{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;gap:8px;background:var(--bg);
+    padding-top:calc(8px + env(safe-area-inset-top,0px));padding-bottom:calc(8px + env(safe-area-inset-bottom,0px));height:100%}
+  .stage-top{margin:0;gap:8px}
+  .stage-top h2{font-size:1.05rem}
+  .progress{flex:1;max-width:none;height:12px}
+  .icon-btn{width:42px;height:42px;border-radius:13px}
+  .m-flex{display:grid}
+  .stage-grid{display:flex;flex-direction:column;flex:1;min-height:0;gap:8px}
+  .stage-grid>div:first-child{display:flex;flex-direction:column;flex:1;min-height:0;gap:8px}
+  .arena{flex:1;height:auto;min-height:190px;border-radius:22px}
+  .view-hint{font-size:.76rem;max-width:70%}
+  .view.pip{width:104px;height:104px;min-width:0;min-height:0;top:8px;right:8px;border-radius:16px}
+  .timer{font-size:1.5rem;padding:2px 14px}
+  .hud{bottom:8px}
+  .view-ctrl{display:grid;gap:6px;position:absolute;right:8px;bottom:8px;z-index:3}
+  .vc{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 88%,transparent);display:grid;place-items:center;box-shadow:0 3px 0 var(--line);color:var(--ink)}
+  .vc svg{width:20px;height:20px}
+  .vc:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+
+  .dock{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 10px;box-shadow:var(--shadow)}
+  .dock:empty{display:none}
+  .dock .kubo{width:40px;height:40px;flex:none}
+  .dock-body{flex:1;min-width:0;display:grid;gap:8px}
+  .dock-msg{font-size:.92rem;line-height:1.38;max-height:min(9.8em,24dvh);overflow-y:auto}
+  .dock-msg.good{color:var(--good)} .dock-msg.bad{color:var(--bad)}
+  .dock-msg b{color:var(--accent)}
+  .dock .algs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;scroll-behavior:smooth}
+  .dock .algs::-webkit-scrollbar{display:none}
+  .dock .ac{flex:none;font-size:.85rem;padding:4px 8px}
+  .dock-actions{display:flex;gap:6px}
+  .dock-actions .btn{flex:1;min-height:40px;padding:7px 10px;font-size:.92rem;border-radius:12px}
+  .dock .ctrl{gap:5px} .dock .ctrl .btn{min-height:38px}
+
+  .pad{margin:0;gap:6px}
+  .pad-row{gap:6px}
+  .mv{min-height:44px;font-size:.98rem;border-radius:12px;box-shadow:0 3px 0 color-mix(in srgb,var(--fc) 55%,#1c1530 30%)}
+  .pad-extra{display:none}
+  .stage.no-pad .pad{display:none}
+
+  /* tiroir d'options */
+  .side{position:fixed;left:0;right:0;bottom:0;z-index:46;max-height:80dvh;overflow-y:auto;overscroll-behavior:contain;background:var(--bg);
+    border-radius:24px 24px 0 0;border-top:1px solid var(--line);box-shadow:0 -20px 40px -20px rgba(22,19,42,.5);
+    padding:0 max(16px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+    transform:translateY(105%);transition:transform .28s cubic-bezier(.3,1.1,.4,1);visibility:hidden}
+  .side.open{transform:none;visibility:visible}
+  .sheet-head{display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:1;background:var(--bg);padding:10px 0 8px}
+  .sheet-head b{font-family:var(--f-display);font-size:1.15rem;flex:1}
+  .sheet-head .grab{position:absolute;left:50%;top:5px;width:44px;height:5px;margin-left:-22px;border-radius:5px;background:var(--line-strong)}
+  .sheet-backdrop{display:block;position:fixed;inset:0;z-index:45;background:rgba(22,19,42,.42)}
+  .sheet-backdrop[hidden]{display:none}
+}
 @media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} }
 </style>
 </head>
@@ -285,10 +370,10 @@ footer{padding-block:22px;color:var(--muted);font-size:.85rem;border-top:1px sol
         Twistik
       </a>
       <nav class="tabs" aria-label="Sections">
-        <button class="tab" data-go="learn" aria-current="page">Apprendre</button>
-        <button class="tab" data-go="defi">Défier</button>
-        <button class="tab" data-go="legends">Légendes</button>
-        <button class="tab" data-go="free">Libre</button>
+        <button class="tab" data-go="learn" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-4 9 4-9 4z"/><path d="M7 10v5c0 1.5 2.5 3 5 3s5-1.5 5-3v-5"/></svg><span>Apprendre</span></button>
+        <button class="tab" data-go="defi"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><span>Défier</span></button>
+        <button class="tab" data-go="legends"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><span>Légendes</span></button>
+        <button class="tab" data-go="free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>Libre</span></button>
       </nav>
       <div class="stats">
         <span class="chip flame" title="Série de jours d'entraînement"><svg viewBox="0 0 24 24" fill="#FF8DB2" aria-hidden="true"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-4 0-6 1-9z"/></svg><b id="st-streak">0</b><span class="sr">&nbsp;j</span></span>
@@ -312,6 +397,11 @@ footer{padding-block:22px;color:var(--muted);font-size:.85rem;border-top:1px sol
           </div>
         </div>
         <div class="hero-art" id="hero-art" aria-hidden="true"></div>
+      </div>
+      <div class="card m-tip" id="m-tip" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+        <div><b>Sur téléphone</b>, glisse une face pour la tourner et utilise deux doigts (ou les flèches) pour pivoter le cube. <b>Encore plus confortable sur ordinateur</b> : grand cube et raccourcis clavier R, U, F…</div>
+        <button class="btn sm ghost" id="m-tip-ok">Compris</button>
       </div>
       <div class="units" id="units"></div>
     </section>
@@ -368,6 +458,7 @@ footer{padding-block:22px;color:var(--muted);font-size:.85rem;border-top:1px sol
         <button class="icon-btn" id="btn-back" aria-label="Retour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
         <h2 id="stage-title">Cube</h2>
         <div class="progress" id="progress" hidden><i></i></div>
+        <button class="icon-btn m-flex" id="btn-sheet" aria-label="Options et détails" aria-expanded="false" aria-controls="side"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button>
       </div>
       <div class="stage-grid">
         <div>
@@ -376,10 +467,17 @@ footer{padding-block:22px;color:var(--muted);font-size:.85rem;border-top:1px sol
             <div class="view pip" id="viewB" hidden><span class="view-tag" id="tagB">Bot</span></div>
             <div class="hud" id="hud" hidden><div class="timer" id="timer">0.00</div></div>
             <div class="view-hint" id="view-hint">Glisse une face pour la tourner · glisse le fond pour pivoter</div>
+            <div class="view-ctrl" aria-label="Pivoter la vue">
+              <button class="vc" id="vc-left" aria-label="Pivoter la vue vers la gauche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7H4V2"/><path d="M4.5 7A8.5 8.5 0 1 1 3.5 13"/></svg></button>
+              <button class="vc" id="vc-right" aria-label="Pivoter la vue vers la droite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h5V2"/><path d="M19.5 7A8.5 8.5 0 1 0 20.5 13"/></svg></button>
+              <button class="vc" id="vc-flip" aria-label="Voir le dessous du cube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 8l5-5 5 5M7 16l5 5 5-5"/></svg></button>
+            </div>
             <div class="overlay" id="overlay" hidden></div>
           </div>
+          <div class="dock" id="dock" aria-live="polite"></div>
           <div class="pad" id="pad"></div>
         </div>
+        <div class="sheet-backdrop" id="sheet-backdrop" hidden></div>
         <aside class="side" id="side"></aside>
       </div>
     </section>
@@ -2566,6 +2664,9 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MQ_MOBILE = matchMedia('(max-width: 760px)');
+const isMobile = () => MQ_MOBILE.matches;
+const COARSE = matchMedia('(pointer: coarse)').matches;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 // =============== Données de progression ===============
@@ -2720,7 +2821,11 @@ class CubeView {
   }
   idle() { return !this.anim && !this.queue.length; }
   async settle() { while (!this.idle()) await sleep(30); }
-  userMove(tok) { if (!this.interactive || this.locked) return; if (this.onMove) this.onMove(tok); else this.turn(tok); }
+  userMove(tok) {
+    if (!this.interactive || this.locked) return;
+    if (COARSE && navigator.vibrate) { try { navigator.vibrate(8); } catch (e) {} }
+    if (this.onMove) this.onMove(tok); else this.turn(tok);
+  }
   update(t) {
     if (!this.anim && this.queue.length) {
       const q = this.queue.shift(); const pivot = new THREE.Group(); this.root.add(pivot);
@@ -2732,6 +2837,10 @@ class CubeView {
       a.pivot.rotation[['x', 'y', 'z'][a.m.axis]] = a.angle * e;
       if (p >= 1) { this.vmodel.move(a.tok); this.anim = null; this.rebuild(); a.res(); }
       this.dirty = true;
+    }
+    if (this.tween) {
+      const w = this.tween; if (w.t0 == null) w.t0 = t; const p = Math.min(1, (t - w.t0) / w.dur); const e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      this.yaw = w.y0 + (w.y1 - w.y0) * e; this.pitch = w.p0 + (w.p1 - w.p0) * e; if (p >= 1) this.tween = null;
     }
     const cp = Math.cos(this.pitch);
     this.camera.position.set(Math.sin(this.yaw) * cp * this.dist, Math.sin(this.pitch) * this.dist, Math.cos(this.yaw) * cp * this.dist);
@@ -2763,25 +2872,32 @@ class CubeView {
     return tokenFor(axis, hit.pos[axis], Math.sign(comps[axis]));
   }
   bind() {
-    const el = this.el;
+    const el = this.el; const pts = new Map();
+    const avg = () => { let x = 0, y = 0; pts.forEach(p => { x += p.x; y += p.y; }); return { x: x / pts.size, y: y / pts.size }; };
     el.addEventListener('pointerdown', e => {
       if (e.button !== 0 && e.pointerType === 'mouse') return;
-      el.setPointerCapture(e.pointerId);
+      try { el.setPointerCapture(e.pointerId); } catch (err) {}
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY }); this.tween = null;
+      if (pts.size >= 2) { const a = avg(); this.drag = { x: a.x, y: a.y, hit: null, yaw: this.yaw, pitch: this.pitch, done: true, multi: true }; return; }
       const hit = this.interactive && !this.locked ? this.pick(e) : null;
       this.drag = { x: e.clientX, y: e.clientY, hit, yaw: this.yaw, pitch: this.pitch, done: false };
       UI.hideViewHint();
     });
     el.addEventListener('pointermove', e => {
+      if (pts.has(e.pointerId)) pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
       const d = this.drag; if (!d) return;
-      const dx = e.clientX - d.x, dy = e.clientY - d.y;
-      if (!d.hit) { this.yaw = d.yaw - dx * 0.009; this.pitch = Math.max(-1.35, Math.min(1.35, d.pitch + dy * 0.009)); this.dirty = true; }
-      else if (!d.done && Math.hypot(dx, dy) > 14) { d.done = true; const tok = this.dragToMove(d.hit, dx, dy); if (tok) this.userMove(tok); }
+      const c = d.multi ? avg() : { x: e.clientX, y: e.clientY };
+      const dx = c.x - d.x, dy = c.y - d.y;
+      const k = e.pointerType === 'touch' ? 0.011 : 0.009;
+      if (!d.hit) { this.yaw = d.yaw - dx * k; this.pitch = Math.max(-1.35, Math.min(1.35, d.pitch + dy * k)); this.dirty = true; }
+      else if (!d.done && Math.hypot(dx, dy) > (e.pointerType === 'touch' ? 12 : 14)) { d.done = true; const tok = this.dragToMove(d.hit, dx, dy); if (tok) this.userMove(tok); }
     });
-    const end = () => { this.drag = null; };
+    const end = e => { pts.delete(e.pointerId); if (this.drag && this.drag.multi && pts.size === 1) { const a = avg(); this.drag = { x: a.x, y: a.y, hit: null, yaw: this.yaw, pitch: this.pitch, done: true, multi: true }; return; } if (!pts.size) this.drag = null; };
     el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
     el.addEventListener('wheel', e => { e.preventDefault(); this.dist = Math.max(8, Math.min(18, this.dist + e.deltaY * 0.01)); this.dirty = true; }, { passive: false });
   }
-  resetView() { this.yaw = 0.62; this.pitch = 0.52; this.dist = 11.5; }
+  orbit(dYaw, pitchTo) { const y0 = this.yaw, p0 = this.pitch; this.tween = { y0, p0, y1: y0 + dYaw, p1: pitchTo == null ? p0 : pitchTo, t0: null, dur: REDUCED ? 1 : 380 }; }
+  resetView() { this.tween = null; this.yaw = 0.62; this.pitch = 0.52; this.dist = isMobile() ? 10.8 : 11.5; }
 }
 
 function frame(t) {
@@ -3009,16 +3125,69 @@ const Stage = {
     $('#viewB').hidden = !pip; viewB.active = pip;
     $('#tagA').hidden = !tagA; if (tagA) $('#tagA').textContent = tagA;
     if (tagB) $('#tagB').textContent = tagB;
-    $('#hud').hidden = !hud; $('#timer').textContent = '0.00'; if (hud) UI.hideViewHint();
+    $('#hud').hidden = !hud; $('#timer').textContent = '0.00';
     this.overlay(null);
     viewA.active = true; viewA.locked = false; viewA.onMove = null; viewA.setHighlight(null); viewA.resetView();
     viewB.setHighlight(null); viewB.resetView();
+    $('#stage').classList.remove('no-pad'); Sheet.close();
+    const vh = $('#view-hint'); vh.hidden = !!hud; vh.textContent = COARSE || isMobile() ? 'Glisse une face pour la tourner · deux doigts pour pivoter' : 'Glisse une face pour la tourner · glisse le fond pour pivoter';
     renderPad(); window.scrollTo({ top: 0 });
   },
   progress(p) { $('#progress i').style.width = Math.round(p * 100) + '%'; },
-  side(html) { $('#side').innerHTML = html; },
+  side(html) { $('#side').innerHTML = html; Dock.build(); },
   overlay(html) { const o = $('#overlay'); if (!html) { o.hidden = true; o.innerHTML = ''; } else { o.hidden = false; o.innerHTML = `<div class="box">${html}</div>`; } },
 };
+
+
+// ---- Mobile : dock du coach + tiroir d'options ----
+const Sheet = {
+  open() { const s = $('#side'); s.classList.add('open'); $('#sheet-backdrop').hidden = false; $('#btn-sheet').setAttribute('aria-expanded', 'true'); },
+  close() { const s = $('#side'); if (!s) return; s.classList.remove('open'); $('#sheet-backdrop').hidden = true; $('#btn-sheet').setAttribute('aria-expanded', 'false'); },
+};
+$('#btn-sheet').onclick = () => ($('#side').classList.contains('open') ? Sheet.close() : Sheet.open());
+$('#sheet-backdrop').onclick = () => Sheet.close();
+const Dock = {
+  build() {
+    const dock = $('#dock'); dock.innerHTML = '';
+    if (!isMobile()) return;
+    const side = $('#side');
+    const bubble = side.querySelector('#bubble');
+    const body = document.createElement('div'); body.className = 'dock-body';
+    if (bubble) {
+      const msg = document.createElement('div'); msg.className = 'dock-msg ' + [...bubble.classList].filter(c => c !== 'bubble').join(' ');
+      msg.innerHTML = bubble.innerHTML; body.appendChild(msg);
+      const card = bubble.closest('.card'); if (card) card.remove();
+    }
+    const items = $$('[data-dock]', side);
+    const actions = document.createElement('div'); actions.className = 'dock-actions';
+    items.forEach(el => {
+      if (el.classList.contains('algs')) { body.appendChild(el); const card = el.closest('.card'); }
+      else if (el.classList.contains('ctrl')) body.appendChild(el);
+      else { el.classList.remove('wide'); actions.appendChild(el); }
+    });
+    if (actions.children.length) body.appendChild(actions);
+    // cartes vidées par le déplacement
+    $$('.card', side).forEach(c => { if (!c.querySelector('button,input,.kv,.algs,p,.ctrl,.row') && !c.textContent.trim().replace(/\s+/g, '').length) c.remove(); if (c.children.length === 1 && c.firstElementChild.tagName === 'H3') c.remove(); });
+    if (!body.children.length) return;
+    dock.insertAdjacentHTML('afterbegin', KUBO); dock.appendChild(body);
+    // tiroir : en-tête + réglages
+    side.insertAdjacentHTML('afterbegin', `<div class="sheet-head"><span class="grab"></span><b>Options</b><button class="icon-btn" id="sheet-close" aria-label="Fermer les options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>`);
+    side.insertAdjacentHTML('beforeend', `<div class="card panel" style="display:grid;gap:10px"><h3>Réglages</h3>
+      <label class="toggle"><input type="checkbox" id="m-slices" ${padSlices ? 'checked' : ''}> Afficher les tranches M, E, S</label>
+      <label class="toggle"><input type="checkbox" id="m-letters" ${Store.data.letters ? 'checked' : ''}> Lettres sur les centres</label>
+      <button class="btn ghost" id="m-recenter">Recentrer la vue</button></div>`);
+    $('#sheet-close').onclick = () => Sheet.close();
+    $('#m-slices').onchange = e => { padSlices = e.target.checked; renderPad(); };
+    $('#m-letters').onchange = e => { Store.data.letters = e.target.checked; Store.save(); viewA.rebuild(); viewB.rebuild(); };
+    $('#m-recenter').onclick = () => { viewA.resetView(); Sheet.close(); };
+    const strip = dock.querySelector('.algs'), cur = strip && strip.querySelector('.cur');
+    if (strip && cur) requestAnimationFrame(() => { strip.scrollLeft = Math.max(0, cur.offsetLeft - strip.clientWidth / 2 + cur.offsetWidth / 2); });
+  },
+};
+$('#vc-left').onclick = () => viewA.orbit(-Math.PI / 2);
+$('#vc-right').onclick = () => viewA.orbit(Math.PI / 2);
+$('#vc-flip').onclick = () => viewA.orbit(0, viewA.pitch > 0 ? -0.52 : 0.52);
+MQ_MOBILE.addEventListener ? MQ_MOBILE.addEventListener('change', () => { Sheet.close(); if (Mode && Mode.render && !$('#stage').hidden) Mode.render(); }) : 0;
 
 // ---- Pavé de mouvements ----
 const PAD_FACES = ['U', 'D', 'R', 'L', 'F', 'B'];
@@ -3150,10 +3319,10 @@ const LessonMode = {
     const canNext = this.state === 'read' || this.state === 'stepdone';
     Stage.side(`
       ${coachBox(this.state === 'play' && this.tracker && this.tracker.i === 0 && !s.guided && this.msg === s.say ? s.say + '<br><br>' + describe(this.tracker.expected()) : this.msg, this.msgCls)}
-      ${this.tracker ? `<div class="card panel"><h3>${s.guided ? 'Solution du coach' : 'La formule'}</h3><div class="algs">${this.tracker.chips()}</div></div>` : ''}
+      ${this.tracker ? `<div class="card panel"><h3>${s.guided ? 'Solution du coach' : 'La formule'}</h3><div class="algs" data-dock>${this.tracker.chips()}</div></div>` : ''}
       <div class="card panel" style="display:grid;gap:10px">
-        ${canNext ? `<button class="btn wide" id="ls-next">Continuer</button>` : ''}
-        ${this.state === 'play' && this.tracker ? `<button class="btn ghost wide" id="ls-show">Montre-moi le coup</button>` : ''}
+        ${canNext ? `<button class="btn wide" id="ls-next" data-dock>Continuer</button>` : ''}
+        ${this.state === 'play' && this.tracker ? `<button class="btn ghost wide" id="ls-show" data-dock>Montre-moi le coup</button>` : ''}
         ${this.state === 'wait' ? `<p class="muted small">${Solver.ready ? 'Le coach calcule…' : 'Le coach chauffe ses neurones (quelques secondes la première fois)…'}</p>` : ''}
         <div class="kv"><div><small>Étape</small><b>${this.si + 1}/${total}</b></div><div><small>Erreurs</small><b>${this.errors}</b></div><div><small>Aides</small><b>${this.helps}</b></div></div>
       </div>`);
@@ -3251,11 +3420,11 @@ const FreeMode = {
   render() {
     Stage.side(`
       ${coachBox(this.msg)}
-      ${this.coach && this.tracker ? `<div class="card panel"><h3>Chemin du coach</h3><div class="algs">${this.tracker.chips()}</div></div>` : ''}
+      ${this.coach && this.tracker ? `<div class="card panel"><h3>Chemin du coach</h3><div class="algs" data-dock>${this.tracker.chips()}</div></div>` : ''}
       <div class="card panel" style="display:grid;gap:10px">
-        <div class="row"><button class="btn" id="f-scr">Mélanger</button><button class="btn ghost" id="f-reset">Réinitialiser</button><button class="btn ghost" id="f-undo">Annuler</button></div>
+        <div class="row"><button class="btn" id="f-scr" data-dock>Mélanger</button><button class="btn ghost" id="f-reset">Réinitialiser</button><button class="btn ghost" id="f-undo" data-dock>Annuler</button></div>
         <div class="sep"></div>
-        <div class="row"><button class="btn sun" id="f-hint">Indice</button><button class="btn mint" id="f-coach">Coach pas-à-pas</button><button class="btn pink" id="f-auto">Résous-le</button></div>
+        <div class="row"><button class="btn sun" id="f-hint" data-dock>Indice</button><button class="btn mint" id="f-coach">Coach pas-à-pas</button><button class="btn pink" id="f-auto">Résous-le</button></div>
         <label class="range" for="f-speed">Vitesse <input type="range" id="f-speed" min="60" max="400" step="10" value="${460 - Store.data.speed}"></label>
         <div class="kv"><div><small>Coups</small><b>${this.moves}</b></div><div><small>Statut</small><b>${viewA.model.isSolved() ? 'Résolu' : 'Mélangé'}</b></div><div><small>Coach</small><b>${Solver.ready ? 'Prêt' : '…'}</b></div></div>
       </div>`);
@@ -3278,7 +3447,7 @@ const LEVELS = {
 // Inspection + chrono partagé (bot, duel, défi du jour)
 function inspection(onGo, ctx) {
   let left = 15; const run = ctx.run;
-  const show = () => Stage.overlay(`<p>Inspection</p><div class="big">${left}</div><p class="muted small">15 s pour observer, comme en compétition. Ton premier coup lance le chrono.</p><button class="btn" id="go">Je suis prêt (Espace)</button>`);
+  const show = () => Stage.overlay(`<p>Inspection</p><div class="big">${left}</div><p class="muted small">15 s pour observer, comme en compétition. Ton premier coup lance le chrono.</p><button class="btn" id="go">${isMobile() ? 'Je suis prêt' : 'Je suis prêt (Espace)'}</button>`);
   show(); $('#go').onclick = () => go_();
   const iv = setInterval(() => { if (run !== ctx.run) return clearInterval(iv); left--; if (left <= 0) go_(); else { $('.overlay .big').textContent = left; } }, 1000);
   let done = false;
@@ -3363,7 +3532,7 @@ const RaceMode = {
         <h3>Toi contre bot ${this.L.name.toLowerCase()}</h3>
         <p class="small muted">${this.L.desc} Il calcule sa solution avec l'algorithme de Kociemba (une vingtaine de coups) et la joue à son rythme.</p>
         <div class="kv" id="race-stats">${this.statsHTML()}</div>
-        <div class="row"><button class="btn sun" id="r-hint" ${this.phase !== 'solve' ? 'disabled' : ''}>Indice (+10 s)</button><button class="btn ghost" id="r-new">Nouveau mélange</button></div>
+        <div class="row"><button class="btn sun" id="r-hint" data-dock ${this.phase !== 'solve' ? 'disabled' : ''}>Indice (+10 s)</button><button class="btn ghost" id="r-new">Nouveau mélange</button></div>
       </div>`);
     $('#r-hint').onclick = () => this.hint(); $('#r-new').onclick = () => { Stage.overlay(null); this.round(); };
   },
@@ -3434,7 +3603,7 @@ const DuelMode = {
         ${this.daily ? `<h3>Défi du ${dayStr(Date.now()).split('-').reverse().join('/')}</h3><p class="small muted">Mélange : <span class="mv-name" style="font-family:var(--f-mono)">${esc(this.scramble || '')}</span></p>
           <div class="kv" style="grid-template-columns:1fr 1fr"><div><small>Record du jour</small><b>${fmt(Store.data.best['daily-' + dayStr(Date.now())])}</b></div><div><small>Série</small><b>${Store.data.streak} j</b></div></div>`
         : `<h3>Tableau des scores</h3><div class="kv" style="grid-template-columns:1fr 1fr"><div><small>${esc(this.names[0])}</small><b>${this.score[0]} pt · ${this.times[0] == null ? (this.player > 0 ? 'DNF' : '—') : fmt(this.times[0])}</b></div><div><small>${esc(this.names[1])}</small><b>${this.score[1]} pt · ${this.times[1] == null ? '—' : fmt(this.times[1])}</b></div></div>`}
-        <button class="btn ghost" id="d-dnf" ${this.phase !== 'solve' ? 'disabled' : ''}>Abandonner ce tour</button>
+        <button class="btn ghost" id="d-dnf" data-dock ${this.phase !== 'solve' ? 'disabled' : ''}>Abandonner ce tour</button>
       </div>`);
     $('#d-dnf').onclick = () => { if (this.phase === 'solve') this.endTurn(null); };
   },
@@ -3443,7 +3612,7 @@ const DuelMode = {
 // =============== Visionneuse des légendes ===============
 const ReplayMode = {
   async start(item) {
-    Stage.open(item.title); Mode = this; this.item = item; this.idx = 0; this.notes = {}; this.toks = []; this.setup = ''; this.playing = false; this.run = (this.run || 0) + 1;
+    Stage.open(item.title); $('#stage').classList.add('no-pad'); Mode = this; this.item = item; this.idx = 0; this.notes = {}; this.toks = []; this.setup = ''; this.playing = false; this.run = (this.run || 0) + 1;
     viewA.locked = true; viewA.interactive = false;
     if (item.dynamic) {
       const run = this.run; this.setup = ''; this.toks = []; this.note = 'Je tire une position au hasard…'; this.render();
@@ -3474,8 +3643,8 @@ const ReplayMode = {
       <div class="card panel"><div class="eyebrow">${esc(it.meta || '')}</div><h3 style="font-size:1.4rem;margin-top:4px">${esc(it.title)}</h3><p class="muted small">${it.desc}</p></div>
       ${coachBox(this.noteAt(this.idx) + (cur && !this.playing ? `<br><span class="muted small">Prochain coup : </span>${describe(cur)}` : ''))}
       <div class="card panel" style="display:grid;gap:12px">
-        <div class="algs">${this.toks.map((t, k) => `<button class="ac ${k < this.idx ? 'done' : k === this.idx ? 'cur' : ''}" data-k="${k + 1}" aria-label="Aller après le coup ${k + 1}">${esc(t)}</button>`).join('')}</div>
-        <div class="ctrl">
+        <div class="algs" data-dock>${this.toks.map((t, k) => `<button class="ac ${k < this.idx ? 'done' : k === this.idx ? 'cur' : ''}" data-k="${k + 1}" aria-label="Aller après le coup ${k + 1}">${esc(t)}</button>`).join('')}</div>
+        <div class="ctrl" data-dock>
           <button class="btn ghost" id="rp-first" aria-label="Début">${ICONS.first}</button>
           <button class="btn ghost" id="rp-prev" aria-label="Coup précédent">${ICONS.prev}</button>
           <button class="btn" id="rp-play" aria-label="${this.playing ? 'Pause' : 'Lecture'}">${this.playing ? ICONS.pause : ICONS.play}</button>
@@ -3485,7 +3654,7 @@ const ReplayMode = {
         <p class="small muted" style="text-align:center">Coup ${this.idx} / ${this.toks.length}</p>
         ${this.toks.length ? `<button class="btn mint wide" id="rp-try">À toi de jouer</button>` : ''}
       </div>`);
-    $$('#side .algs .ac').forEach(b => b.onclick = () => this.goTo(+b.dataset.k));
+    $$('.algs .ac[data-k]').forEach(b => b.onclick = () => this.goTo(+b.dataset.k));
     $('#rp-first').onclick = () => this.goTo(0); $('#rp-last').onclick = () => this.goTo(this.toks.length);
     $('#rp-prev').onclick = () => { this.playing = false; this.step(-1); };
     $('#rp-next').onclick = () => { this.playing = false; this.step(1); };
@@ -3540,6 +3709,7 @@ function renderLegends() {
 const SCREENS = { learn: '#hub-learn', defi: '#hub-defi', legends: '#hub-legends', stage: '#stage' };
 function showScreen(name) {
   Object.entries(SCREENS).forEach(([k, sel]) => $(sel).hidden = k !== name);
+  document.documentElement.classList.toggle('in-stage', name === 'stage');
   if (name !== 'stage') { viewA.active = false; viewB.active = false; }
 }
 let lastHub = 'learn';
@@ -3559,6 +3729,8 @@ $('#btn-back').onclick = () => {
 };
 
 UI.stats();
+try { $('#m-tip').hidden = !!Store.data.tipSeen; } catch (e) {}
+$('#m-tip-ok').onclick = () => { Store.data.tipSeen = true; Store.save(); $('#m-tip').hidden = true; };
 const startHash = { '#defier': 'defi', '#legendes': 'legends', '#libre': 'free' }[location.hash] || 'learn';
 go(startHash);
 requestAnimationFrame(frame);
